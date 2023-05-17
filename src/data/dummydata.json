@@ -1,0 +1,64 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "iPhone 13 Pro",
+      "category": "Phones",
+      "brand": "Apple",
+      "price": 999,
+      "img": "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/21601654/2023/1/31/253206ac-3e9c-4c2a-b132-a7a40ad2dfe21675145894164POLOBLUEEDT75MLSPRAY1.jpg",
+      "ratings": 4.5,
+      "ratings_count": 49
+    },
+    {
+      "id": 2,
+      "name": "Samsung Galaxy S22 Ultra",
+      "category": "Phones",
+      "brand": "Samsung",
+      "price": 1199,
+      "img": "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/21601654/2023/1/31/253206ac-3e9c-4c2a-b132-a7a40ad2dfe21675145894164POLOBLUEEDT75MLSPRAY1.jpg",
+      "ratings": 4.5,
+      "ratings_count": 49
+    },
+    {
+      "id": 3,
+      "name": "MacBook Pro M2",
+      "category": "Computers",
+      "brand": "Apple",
+      "price": 1299,
+      "img": "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/21601654/2023/1/31/253206ac-3e9c-4c2a-b132-a7a40ad2dfe21675145894164POLOBLUEEDT75MLSPRAY1.jpg",
+      "ratings": 2.5,
+      "ratings_count": 49
+    },
+    {
+      "id": 4,
+      "name": "Dell XPS 13",
+      "category": "Computers",
+      "brand": "Dell",
+      "price": 999,
+      "img": "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/21601654/2023/1/31/253206ac-3e9c-4c2a-b132-a7a40ad2dfe21675145894164POLOBLUEEDT75MLSPRAY1.jpg",
+      "ratings": 4.5,
+      "ratings_count": 49
+    },
+    {
+      "id": 5,
+      "name": "Google Pixel 6",
+      "category": "Phones",
+      "brand": "Google",
+      "price": 599,
+      "img": "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/21601654/2023/1/31/253206ac-3e9c-4c2a-b132-a7a40ad2dfe21675145894164POLOBLUEEDT75MLSPRAY1.jpg",
+      "ratings": 3,
+      "ratings_count": 49
+    },
+    {
+      "id": 6,
+      "name": "Nokia 1200",
+      "category": "Phones",
+      "brand": "Nokia",
+      "price": 599,
+      "img": "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/21601654/2023/1/31/253206ac-3e9c-4c2a-b132-a7a40ad2dfe21675145894164POLOBLUEEDT75MLSPRAY1.jpg",
+      "ratings": 4,
+      "ratings_count": 49
+    }
+  ]
+}
