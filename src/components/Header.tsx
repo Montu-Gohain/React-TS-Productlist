@@ -16,12 +16,19 @@ import { FaSearch, FaList, FaBell } from "react-icons/fa";
 import UserIcon from "../assets/mesmall.webp";
 
 export default function Header() {
+  // ^ Applying throttling
+  const handleSearchBox = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("Want are searching : ", event.target.value);
+  };
   return (
     <HeaderContainer>
       <LeftDiv>
         <LogoContainer src={Amazom} alt="logo" />
         <SearchContainer>
-          <SearchField placeholder="Search" />
+          <SearchField
+            placeholder="Search"
+            onChange={(event) => handleSearchBox(event)}
+          />
           <SearchButton>
             <FaSearch />
           </SearchButton>

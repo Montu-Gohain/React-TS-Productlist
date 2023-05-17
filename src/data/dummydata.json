@@ -3,9 +3,9 @@
     {
       "id": 1,
       "name": "iPhone 13 Pro",
-      "category": "Phones",
+      "category": "phone",
       "brand": "Apple",
-      "price": 999,
+      "price": 1023,
       "img": "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/21601654/2023/1/31/253206ac-3e9c-4c2a-b132-a7a40ad2dfe21675145894164POLOBLUEEDT75MLSPRAY1.jpg",
       "ratings": 4.5,
       "ratings_count": 49
@@ -13,7 +13,7 @@
     {
       "id": 2,
       "name": "Samsung Galaxy S22 Ultra",
-      "category": "Phones",
+      "category": "phone",
       "brand": "Samsung",
       "price": 1199,
       "img": "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/21601654/2023/1/31/253206ac-3e9c-4c2a-b132-a7a40ad2dfe21675145894164POLOBLUEEDT75MLSPRAY1.jpg",
@@ -23,7 +23,7 @@
     {
       "id": 3,
       "name": "MacBook Pro M2",
-      "category": "Computers",
+      "category": "computer",
       "brand": "Apple",
       "price": 1299,
       "img": "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/21601654/2023/1/31/253206ac-3e9c-4c2a-b132-a7a40ad2dfe21675145894164POLOBLUEEDT75MLSPRAY1.jpg",
@@ -33,7 +33,7 @@
     {
       "id": 4,
       "name": "Dell XPS 13",
-      "category": "Computers",
+      "category": "computer",
       "brand": "Dell",
       "price": 999,
       "img": "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/21601654/2023/1/31/253206ac-3e9c-4c2a-b132-a7a40ad2dfe21675145894164POLOBLUEEDT75MLSPRAY1.jpg",
@@ -43,7 +43,7 @@
     {
       "id": 5,
       "name": "Google Pixel 6",
-      "category": "Phones",
+      "category": "phone",
       "brand": "Google",
       "price": 599,
       "img": "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/21601654/2023/1/31/253206ac-3e9c-4c2a-b132-a7a40ad2dfe21675145894164POLOBLUEEDT75MLSPRAY1.jpg",
@@ -53,7 +53,7 @@
     {
       "id": 6,
       "name": "Nokia 1200",
-      "category": "Phones",
+      "category": "phone",
       "brand": "Nokia",
       "price": 599,
       "img": "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/21601654/2023/1/31/253206ac-3e9c-4c2a-b132-a7a40ad2dfe21675145894164POLOBLUEEDT75MLSPRAY1.jpg",

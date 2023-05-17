@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FaSlidersH } from "react-icons/fa";
 import {
   ChildContainer,
@@ -17,21 +17,50 @@ import Data from "../data/dummydata.json";
 const products = Data.products;
 
 export default function ProductsList() {
-  const [sortmethod, setSortmethod] = useState("");
   const [chosenProduct, setChosenProduct] = useState(products);
+  const [chosenCategories, setChosenCategories] = useState<string[]>([
+    "phones",
+  ]);
 
-  // Product sorting happening when sortmethod changes.
-  useEffect(() => {
-    if (sortmethod === "1") {
-      // console.log("Sort Price High to low");
-      const temp_products = [...products].sort((a, b) => b.price - a.price);
+  //* Product sorting happening when sortmethod changes.
+
+  const handleSortMethod = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    if (!event.target.value) return;
+    if (event.target.value === "1") {
+      console.log("Sort Price High to low");
+      const temp_products = [...chosenProduct].sort(
+        (a, b) => b.price - a.price
+      );
       setChosenProduct(temp_products);
-    } else if (sortmethod === "2") {
-      const temp_products = [...products].sort((a, b) => a.price - b.price);
+    } else if (event.target.value === "2") {
+      const temp_products = [...chosenProduct].sort(
+        (a, b) => a.price - b.price
+      );
       setChosenProduct(temp_products);
-      // console.log("Sort Price Low to high");
+      console.log("Sort Price Low to high");
     }
-  }, [sortmethod]);
+  };
+
+  //* Product filtering based on categories
+  const handleFilterSelected = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = event.target.value;
+    if (event.target.checked) {
+      if (chosenCategories.length < 2) {
+        console.log("I am here");
+        const remove_empty = chosenCategories.concat(newValue);
+        remove_empty.shift();
+        console.log("After removal", remove_empty);
+        setChosenCategories(remove_empty);
+        console.log(chosenCategories);
+      } else {
+        console.log("You want to see ", newValue);
+        setChosenCategories([newValue]);
+        console.log("Your selected fields are : ", chosenCategories);
+      }
+    } else {
+      console.log("You unchecked : ", newValue);
+    }
+  };
 
   return (
     <ParentContainer>
@@ -46,24 +75,49 @@ export default function ProductsList() {
             <SectionTitle>Category</SectionTitle>
             <OptionsContainer>
               <label>
-                <input type="checkbox" name="brand" value="Nike" />
-                Nike
+                <input
+                  type="checkbox"
+                  name="category"
+                  value="computer"
+                  onChange={(event) => handleFilterSelected(event)}
+                />
+                Computers
               </label>
               <label>
-                <input type="checkbox" name="brand" value="Adidas" />
-                Adidas
+                <input
+                  type="checkbox"
+                  name="category"
+                  value="phone"
+                  onChange={(event) => handleFilterSelected(event)}
+                />
+                Phones
               </label>
               <label>
-                <input type="checkbox" name="brand" value="Adidas" />
-                Tommy Filfiger
+                <input
+                  type="checkbox"
+                  name="category"
+                  value="shoe"
+                  onChange={(event) => handleFilterSelected(event)}
+                />
+                Shoes
               </label>
               <label>
-                <input type="checkbox" name="brand" value="Adidas" />
-                Asics
+                <input
+                  type="checkbox"
+                  name="category"
+                  value="tshirt"
+                  onChange={(event) => handleFilterSelected(event)}
+                />
+                T-shirts
               </label>
               <label>
-                <input type="checkbox" name="brand" value="Adidas" />
-                Beneton
+                <input
+                  type="checkbox"
+                  name="category"
+                  value="guitar"
+                  onChange={(event) => handleFilterSelected(event)}
+                />
+                Guitars
               </label>
             </OptionsContainer>
           </FilterBySection>
@@ -122,7 +176,7 @@ export default function ProductsList() {
         </LeftDiv>
         <RightDiv>
           <TopSection>
-            <select onChange={(e) => setSortmethod(e.target.value)}>
+            <select onChange={(event) => handleSortMethod(event)}>
               <option value="">Sort By</option>
               <option value="1">Price High to Low</option>
               <option value="2">Price Low to High</option>

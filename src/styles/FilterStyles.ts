@@ -6,6 +6,7 @@ const ParentContainer = styled.div`
     justify-content: center;
     background-color: #D1D1D1;
     height: 100vh;
+
     @media (max-width: 768px) {
         height: 200vh;
     }
@@ -29,6 +30,7 @@ const LeftDiv = styled.div`
      height: 60vh;
      flex : 1;
      background-color: aliceblue;
+     border-radius: 10px;
      box-shadow: 5px 10px 23px -10px rgba(0,0,0,0.1);
 `
 const RightDiv = styled.div`
