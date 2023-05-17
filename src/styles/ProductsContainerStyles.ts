@@ -4,7 +4,7 @@ import {styled} from 'styled-components'
 const TopSection = styled.div`
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
     height: 40px;
     padding: 8px 9px 8px 2px;
 `

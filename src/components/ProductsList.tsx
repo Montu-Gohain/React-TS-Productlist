@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaSlidersH } from "react-icons/fa";
 import {
   ChildContainer,
@@ -14,13 +14,13 @@ import {
 import { TopSection } from "../styles/ProductsContainerStyles";
 import ProductContainer from "./ProductContainer";
 import Data from "../data/dummydata.json";
+
 const products = Data.products;
+const chosenCategories = [""];
+const chosenBrand = [""];
 
 export default function ProductsList() {
   const [chosenProduct, setChosenProduct] = useState(products);
-  const [chosenCategories, setChosenCategories] = useState<string[]>([
-    "phones",
-  ]);
 
   //* Product sorting happening when sortmethod changes.
 
@@ -42,24 +42,52 @@ export default function ProductsList() {
   };
 
   //* Product filtering based on categories
-  const handleFilterSelected = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFilterCategory = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (chosenCategories.length < 2 && chosenBrand.length < 2)
+      setChosenProduct(products);
     const newValue = event.target.value;
     if (event.target.checked) {
-      if (chosenCategories.length < 2) {
-        console.log("I am here");
-        const remove_empty = chosenCategories.concat(newValue);
-        remove_empty.shift();
-        console.log("After removal", remove_empty);
-        setChosenCategories(remove_empty);
-        console.log(chosenCategories);
-      } else {
-        console.log("You want to see ", newValue);
-        setChosenCategories([newValue]);
-        console.log("Your selected fields are : ", chosenCategories);
-      }
+      chosenCategories.push(newValue);
+      const temp_filtered = products.filter((product) =>
+        chosenCategories.includes(product.category)
+      );
+      setChosenProduct(temp_filtered);
     } else {
-      console.log("You unchecked : ", newValue);
+      //If user uncheckes a field we'll remove that category from the array.
+      console.log("I got unchecked");
+      const idx = chosenCategories.indexOf(newValue);
+      chosenCategories.splice(idx, 1);
+      const temp_filtered = chosenProduct.filter((product) =>
+        chosenCategories.includes(product.category)
+      );
+      setChosenProduct(temp_filtered);
     }
+    console.log("Currently selected catagories : ", chosenCategories);
+  };
+
+  //* Product filtering based on Brands
+
+  const handleFilterBrand = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (chosenBrand.length < 2 && chosenCategories.length < 2)
+      setChosenProduct(products);
+    const newValue = event.target.value;
+    if (event.target.checked) {
+      chosenBrand.push(newValue);
+      const temp_filtered = products.filter((product) =>
+        chosenBrand.includes(product.brand)
+      );
+      setChosenProduct(temp_filtered);
+    } else {
+      //If user uncheckes a field we'll remove that category from the array.
+      console.log("I got unchecked");
+      const idx = chosenBrand.indexOf(newValue);
+      chosenBrand.splice(idx, 1);
+      const temp_filtered = products.filter((product) =>
+        chosenBrand.includes(product.brand)
+      );
+      setChosenProduct(temp_filtered);
+    }
+    console.log("Currently selected catagories : ", chosenBrand);
   };
 
   return (
@@ -79,7 +107,7 @@ export default function ProductsList() {
                   type="checkbox"
                   name="category"
                   value="computer"
-                  onChange={(event) => handleFilterSelected(event)}
+                  onChange={(event) => handleFilterCategory(event)}
                 />
                 Computers
               </label>
@@ -88,7 +116,7 @@ export default function ProductsList() {
                   type="checkbox"
                   name="category"
                   value="phone"
-                  onChange={(event) => handleFilterSelected(event)}
+                  onChange={(event) => handleFilterCategory(event)}
                 />
                 Phones
               </label>
@@ -97,7 +125,7 @@ export default function ProductsList() {
                   type="checkbox"
                   name="category"
                   value="shoe"
-                  onChange={(event) => handleFilterSelected(event)}
+                  onChange={(event) => handleFilterCategory(event)}
                 />
                 Shoes
               </label>
@@ -106,7 +134,7 @@ export default function ProductsList() {
                   type="checkbox"
                   name="category"
                   value="tshirt"
-                  onChange={(event) => handleFilterSelected(event)}
+                  onChange={(event) => handleFilterCategory(event)}
                 />
                 T-shirts
               </label>
@@ -115,7 +143,7 @@ export default function ProductsList() {
                   type="checkbox"
                   name="category"
                   value="guitar"
-                  onChange={(event) => handleFilterSelected(event)}
+                  onChange={(event) => handleFilterCategory(event)}
                 />
                 Guitars
               </label>
@@ -126,23 +154,48 @@ export default function ProductsList() {
             <SectionTitle>Brand</SectionTitle>
             <OptionsContainer>
               <label>
-                <input type="checkbox" name="brand" value="Nike" />
-                Nike
+                <input
+                  type="checkbox"
+                  name="brand"
+                  value="Apple"
+                  onChange={(event) => handleFilterBrand(event)}
+                />
+                Apple
               </label>
               <label>
-                <input type="checkbox" name="brand" value="Adidas" />
-                Adidas
+                <input
+                  type="checkbox"
+                  name="brand"
+                  value="Samsung"
+                  onChange={(event) => handleFilterBrand(event)}
+                />
+                Samsung
               </label>
               <label>
-                <input type="checkbox" name="brand" value="Adidas" />
+                <input
+                  type="checkbox"
+                  name="brand"
+                  value="Adidas"
+                  onChange={(event) => handleFilterBrand(event)}
+                />
                 Tommy Filfiger
               </label>
               <label>
-                <input type="checkbox" name="brand" value="Adidas" />
+                <input
+                  type="checkbox"
+                  name="brand"
+                  value="Adidas"
+                  onChange={(event) => handleFilterBrand(event)}
+                />
                 Asics
               </label>
               <label>
-                <input type="checkbox" name="brand" value="Adidas" />
+                <input
+                  type="checkbox"
+                  name="brand"
+                  value="Adidas"
+                  onChange={(event) => handleFilterBrand(event)}
+                />
                 Beneton
               </label>
             </OptionsContainer>
@@ -176,6 +229,12 @@ export default function ProductsList() {
         </LeftDiv>
         <RightDiv>
           <TopSection>
+            <button
+              className="clear-button"
+              onClick={() => setChosenProduct(products)}
+            >
+              Clear Filter
+            </button>
             <select onChange={(event) => handleSortMethod(event)}>
               <option value="">Sort By</option>
               <option value="1">Price High to Low</option>
