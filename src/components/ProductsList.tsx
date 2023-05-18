@@ -89,6 +89,14 @@ export default function ProductsList() {
     }
     console.log("Currently selected catagories : ", chosenBrand);
   };
+  // * Reset all applied fiters
+  const clearFilters = () => {
+    const All_Checkbox = document.querySelectorAll('input[type="checkbox"]');
+    All_Checkbox.forEach((checkbox) => {
+      (checkbox as HTMLInputElement).checked = false;
+    });
+    setChosenProduct(products);
+  };
 
   return (
     <ParentContainer>
@@ -229,11 +237,8 @@ export default function ProductsList() {
         </LeftDiv>
         <RightDiv>
           <TopSection>
-            <button
-              className="clear-button"
-              onClick={() => setChosenProduct(products)}
-            >
-              Clear Filter
+            <button className="clear-button" onClick={clearFilters}>
+              <strong>Clear all</strong>
             </button>
             <select onChange={(event) => handleSortMethod(event)}>
               <option value="">Sort By</option>
