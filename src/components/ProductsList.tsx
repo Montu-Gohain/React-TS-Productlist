@@ -1,5 +1,5 @@
-import { useState, useContext, useEffect } from "react";
-import { FaSlidersH, FaStethoscope } from "react-icons/fa";
+/*eslint-disable */
+import { FaSlidersH } from "react-icons/fa";
 import {
   ChildContainer,
   ParentContainer,

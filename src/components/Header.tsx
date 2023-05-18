@@ -14,7 +14,7 @@ import {
 import Amazom from "../assets/amazon.svg";
 import { FaSearch, FaList, FaBell } from "react-icons/fa";
 import UserIcon from "../assets/mesmall.webp";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import ProductsList from "./ProductsList";
 import Data from "../data/dummydata.json";
 const products = Data.products;
