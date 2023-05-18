@@ -21,7 +21,9 @@ const Product: React.FC<ProductDetailsProps> = ({ details }) => {
       <div className="wishlist">
         <AiFillHeart />
       </div>
-      <img className="product-image" src={details.img} alt="product image" />
+      <div className="image-container">
+        <img className="product-image" src={details.img} alt="product image" />
+      </div>
       <div className="product-details">
         <h3>{details.name}</h3>
         <h5>{details.category}</h5>

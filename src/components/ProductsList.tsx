@@ -20,10 +20,10 @@ const chosenCategories = [""];
 const chosenBrand = [""];
 const priceRanges: any = {
   1: [100, 500],
-  2: [500, 1000],
-  3: [1000, 1500],
-  4: [2000, 2500],
-  5: [2500, 3000],
+  2: [500, 12000],
+  3: [12000, 40000],
+  4: [40000, 80000],
+  5: [80000, 500000],
 };
 const chosen_price_range: any = [];
 
@@ -176,10 +176,10 @@ export default function ProductsList({
                 <input
                   type="checkbox"
                   name="category"
-                  value="tshirt"
+                  value="deo"
                   onChange={(event) => handleFilterCategory(event)}
                 />
-                T-shirts
+                Spray & Deodrints
               </label>
               <label>
                 <input
@@ -254,7 +254,7 @@ export default function ProductsList({
                   value="1"
                   onChange={(event) => FilterByPrice(event)}
                 />
-                &lt; ₹100
+                &lt; ₹500
               </label>
               <label>
                 <input
@@ -263,7 +263,7 @@ export default function ProductsList({
                   value="2"
                   onChange={(event) => FilterByPrice(event)}
                 />
-                ₹100 - ₹199
+                ₹500 - ₹12000
               </label>
               <label>
                 <input
@@ -272,7 +272,7 @@ export default function ProductsList({
                   value="3"
                   onChange={(event) => FilterByPrice(event)}
                 />
-                ₹200 - ₹599
+                ₹12000 - ₹40000
               </label>
               <label>
                 <input
@@ -281,7 +281,7 @@ export default function ProductsList({
                   value="4"
                   onChange={(event) => FilterByPrice(event)}
                 />
-                ₹600 - ₹999
+                ₹40000- ₹80000
               </label>
               <label>
                 <input
@@ -290,7 +290,7 @@ export default function ProductsList({
                   value="5"
                   onChange={(event) => FilterByPrice(event)}
                 />
-                &gt; ₹1000
+                &gt; ₹80000
               </label>
             </OptionsContainer>
           </FilterBySection>
