@@ -218,28 +218,28 @@ export default function ProductsList({
                 <input
                   type="checkbox"
                   name="brand"
-                  value="Adidas"
+                  value="Ibanez"
                   onChange={(event) => handleFilterBrand(event)}
                 />
-                Tommy Filfiger
+                Ibanez
               </label>
               <label>
                 <input
                   type="checkbox"
                   name="brand"
-                  value="Adidas"
+                  value="Fender"
                   onChange={(event) => handleFilterBrand(event)}
                 />
-                Asics
+                Fender
               </label>
               <label>
                 <input
                   type="checkbox"
                   name="brand"
-                  value="Adidas"
+                  value="Lg"
                   onChange={(event) => handleFilterBrand(event)}
                 />
-                Beneton
+                Lg
               </label>
             </OptionsContainer>
           </FilterBySection>
