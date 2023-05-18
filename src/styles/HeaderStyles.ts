@@ -3,9 +3,9 @@ import styled from "styled-components";
 const HeaderContainer = styled.div`
  background-color: azure;
  display: flex;
- box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
  @media (min-width: 768px) {
-    padding: 5px 80px 5px 80px;
+    padding: 9px 80px 9px 80px;
+    border: 1px solid #d1d1d1;
  }
 `
 const RightDiv = styled.div`

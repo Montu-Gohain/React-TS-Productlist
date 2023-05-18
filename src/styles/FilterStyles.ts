@@ -4,11 +4,12 @@ const ParentContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #D1D1D1;
+    background-color: whitesmoke;
     height: 100vh;
-
-    @media (max-width: 768px) {
-        height: 200vh;
+    @media (max-width: 786px) {
+        max-width: 100%;
+        background-color: transparent; //* Parent Container
+        flex-direction: column;
     }
 `
 const ChildContainer = styled.div`
@@ -21,7 +22,6 @@ const ChildContainer = styled.div`
     width: 1400px;
    @media (max-width: 768px) {
         flex-direction: column;
-        height: 200vh;
     }
 `
 const LeftDiv = styled.div`
@@ -32,6 +32,10 @@ const LeftDiv = styled.div`
      background-color: aliceblue;
      border-radius: 10px;
      box-shadow: 5px 10px 23px -10px rgba(0,0,0,0.1);
+     @media (max-width: 768px) {
+        /* display: none; */
+     flex-direction: ;
+}
 `
 const RightDiv = styled.div`
     height : 80vh;
