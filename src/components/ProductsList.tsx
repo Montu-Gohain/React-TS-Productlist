@@ -18,7 +18,14 @@ import Data from "../data/dummydata.json";
 const products = Data.products;
 const chosenCategories = [""];
 const chosenBrand = [""];
-
+const priceRanges: any = {
+  1: [100, 500],
+  2: [500, 1000],
+  3: [1000, 1500],
+  4: [2000, 2500],
+  5: [2500, 3000],
+};
+const chosen_price_range: any = [];
 export default function ProductsList() {
   const [chosenProduct, setChosenProduct] = useState(products);
 
@@ -96,6 +103,30 @@ export default function ProductsList() {
       (checkbox as HTMLInputElement).checked = false;
     });
     setChosenProduct(products);
+  };
+
+  // * Filter According to price ranger
+  function FilterWPrice() {
+    const min_ = chosen_price_range[0][0];
+    const max_ = chosen_price_range[chosen_price_range.length - 1][1];
+    const temp_products = chosenProduct.filter(
+      (item) => item.price >= min_ && item.price <= max_
+    );
+    setChosenProduct(temp_products);
+  }
+  const FilterByPrice = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const chosen_option = priceRanges[event.target.value];
+    const new_range = [chosen_option[0], chosen_option[1]];
+    if (event.target.checked) {
+      chosen_price_range.push(new_range);
+      FilterWPrice();
+    } else {
+      console.log("I got unchecked");
+      const idx = chosen_price_range.indexOf(new_range);
+      chosen_price_range.splice(idx, 1);
+      console.log("Current", chosen_price_range.length);
+      !chosen_price_range.length ? setChosenProduct(products) : FilterWPrice();
+    }
   };
 
   return (
@@ -213,23 +244,48 @@ export default function ProductsList() {
             <SectionTitle>Price</SectionTitle>
             <OptionsContainer>
               <label>
-                <input type="checkbox" name="brand" value="Nike" />
+                <input
+                  type="checkbox"
+                  name="brand"
+                  value="1"
+                  onChange={(event) => FilterByPrice(event)}
+                />
                 &lt; ₹100
               </label>
               <label>
-                <input type="checkbox" name="brand" value="Adidas" />
+                <input
+                  type="checkbox"
+                  name="brand"
+                  value="2"
+                  onChange={(event) => FilterByPrice(event)}
+                />
                 ₹100 - ₹199
               </label>
               <label>
-                <input type="checkbox" name="brand" value="Adidas" />
+                <input
+                  type="checkbox"
+                  name="brand"
+                  value="3"
+                  onChange={(event) => FilterByPrice(event)}
+                />
                 ₹200 - ₹599
               </label>
               <label>
-                <input type="checkbox" name="brand" value="Adidas" />
+                <input
+                  type="checkbox"
+                  name="brand"
+                  value="4"
+                  onChange={(event) => FilterByPrice(event)}
+                />
                 ₹600 - ₹999
               </label>
               <label>
-                <input type="checkbox" name="brand" value="Adidas" />
+                <input
+                  type="checkbox"
+                  name="brand"
+                  value="5"
+                  onChange={(event) => FilterByPrice(event)}
+                />
                 &gt; ₹1000
               </label>
             </OptionsContainer>
