@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { FaSlidersH } from "react-icons/fa";
+import { useState, useContext, useEffect } from "react";
+import { FaSlidersH, FaStethoscope } from "react-icons/fa";
 import {
   ChildContainer,
   ParentContainer,
@@ -14,8 +14,8 @@ import {
 import { TopSection } from "../styles/ProductsContainerStyles";
 import ProductContainer from "./ProductContainer";
 import Data from "../data/dummydata.json";
-
 const products = Data.products;
+
 const chosenCategories = [""];
 const chosenBrand = [""];
 const priceRanges: any = {
@@ -26,8 +26,18 @@ const priceRanges: any = {
   5: [2500, 3000],
 };
 const chosen_price_range: any = [];
-export default function ProductsList() {
-  const [chosenProduct, setChosenProduct] = useState(products);
+
+// *-------------------------------------------
+
+export default function ProductsList({
+  data,
+  setter,
+}: {
+  data: any;
+  setter: any;
+}) {
+  // const [chosenProduct, setChosenProduct] = useState(products);
+  // * Filter By Search Input(Product Name)
 
   //* Product sorting happening when sortmethod changes.
 
@@ -35,39 +45,34 @@ export default function ProductsList() {
     if (!event.target.value) return;
     if (event.target.value === "1") {
       console.log("Sort Price High to low");
-      const temp_products = [...chosenProduct].sort(
-        (a, b) => b.price - a.price
-      );
-      setChosenProduct(temp_products);
+      const temp_products = [...data].sort((a, b) => b.price - a.price);
+      setter(temp_products);
     } else if (event.target.value === "2") {
-      const temp_products = [...chosenProduct].sort(
-        (a, b) => a.price - b.price
-      );
-      setChosenProduct(temp_products);
+      const temp_products = [...data].sort((a, b) => a.price - b.price);
+      setter(temp_products);
       console.log("Sort Price Low to high");
     }
   };
 
   //* Product filtering based on categories
   const handleFilterCategory = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (chosenCategories.length < 2 && chosenBrand.length < 2)
-      setChosenProduct(products);
+    if (chosenCategories.length < 2 && chosenBrand.length < 2) setter(products);
     const newValue = event.target.value;
     if (event.target.checked) {
       chosenCategories.push(newValue);
       const temp_filtered = products.filter((product) =>
         chosenCategories.includes(product.category)
       );
-      setChosenProduct(temp_filtered);
+      setter(temp_filtered);
     } else {
       //If user uncheckes a field we'll remove that category from the array.
       console.log("I got unchecked");
       const idx = chosenCategories.indexOf(newValue);
       chosenCategories.splice(idx, 1);
-      const temp_filtered = chosenProduct.filter((product) =>
+      const temp_filtered = data.filter((product: any) =>
         chosenCategories.includes(product.category)
       );
-      setChosenProduct(temp_filtered);
+      setter(temp_filtered);
     }
     console.log("Currently selected catagories : ", chosenCategories);
   };
@@ -75,15 +80,14 @@ export default function ProductsList() {
   //* Product filtering based on Brands
 
   const handleFilterBrand = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (chosenBrand.length < 2 && chosenCategories.length < 2)
-      setChosenProduct(products);
+    if (chosenBrand.length < 2 && chosenCategories.length < 2) setter(products);
     const newValue = event.target.value;
     if (event.target.checked) {
       chosenBrand.push(newValue);
       const temp_filtered = products.filter((product) =>
         chosenBrand.includes(product.brand)
       );
-      setChosenProduct(temp_filtered);
+      setter(temp_filtered);
     } else {
       //If user uncheckes a field we'll remove that category from the array.
       console.log("I got unchecked");
@@ -92,7 +96,7 @@ export default function ProductsList() {
       const temp_filtered = products.filter((product) =>
         chosenBrand.includes(product.brand)
       );
-      setChosenProduct(temp_filtered);
+      setter(temp_filtered);
     }
     console.log("Currently selected catagories : ", chosenBrand);
   };
@@ -102,17 +106,17 @@ export default function ProductsList() {
     All_Checkbox.forEach((checkbox) => {
       (checkbox as HTMLInputElement).checked = false;
     });
-    setChosenProduct(products);
+    setter(products);
   };
 
   // * Filter According to price ranger
   function FilterWPrice() {
     const min_ = chosen_price_range[0][0];
     const max_ = chosen_price_range[chosen_price_range.length - 1][1];
-    const temp_products = chosenProduct.filter(
-      (item) => item.price >= min_ && item.price <= max_
+    const temp_products = data.filter(
+      (item: any) => item.price >= min_ && item.price <= max_
     );
-    setChosenProduct(temp_products);
+    setter(temp_products);
   }
   const FilterByPrice = (event: React.ChangeEvent<HTMLInputElement>) => {
     const chosen_option = priceRanges[event.target.value];
@@ -125,7 +129,7 @@ export default function ProductsList() {
       const idx = chosen_price_range.indexOf(new_range);
       chosen_price_range.splice(idx, 1);
       console.log("Current", chosen_price_range.length);
-      !chosen_price_range.length ? setChosenProduct(products) : FilterWPrice();
+      !chosen_price_range.length ? setter(products) : FilterWPrice();
     }
   };
 
@@ -302,7 +306,7 @@ export default function ProductsList() {
               <option value="2">Price Low to High</option>
             </select>
           </TopSection>
-          <ProductContainer products={chosenProduct} />
+          <ProductContainer products={data} />
         </RightDiv>
       </ChildContainer>
     </ParentContainer>
